@@ -1,0 +1,5 @@
+langauge: node_js
+node_js:
+  -11.0.0
+before_install:
+  - npm i -g npm@6.9.0
