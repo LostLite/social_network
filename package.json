@@ -1,0 +1,28 @@
+{
+  "name": "social_network",
+  "version": "1.0.0",
+  "description": "Social network project with node and react js",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LostLite/social_network.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LostLite/social_network/issues"
+  },
+  "homepage": "https://github.com/LostLite/social_network#readme"
+}
