@@ -1,7 +1,6 @@
-module.exports = {
+const router = require('express').Router();
+const PostController = require('../controllers/Post');
 
-    getPosts: (req, res) => {
-        res.send('This end point returns all the registered posts')
-    }
+router.get('/', PostController.getPosts)
 
-}
+module.exports = router;
