@@ -1,6 +1,6 @@
 langauge: node_js
 node_js:
-  - node
+  - "stable"
 
 cache: npm
 
