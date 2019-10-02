@@ -1,7 +1,14 @@
 langauge: node_js
+
 node_js:
-  -"stable"
+  - "stable"
 
 cache:
   directories:
     - "node_modules"
+
+install:
+  - npm install
+  
+notifications:
+  email: false
