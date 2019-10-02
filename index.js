@@ -2,6 +2,7 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./routes');
+const PORT = process.env.PORT || 3000;
 
 //middleware
 app.use(bodyParser.json());
@@ -13,6 +14,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Social Network API. It is a Work in Progress')
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('App listening on port 3000!');
 });
