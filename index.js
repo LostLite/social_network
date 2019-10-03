@@ -2,7 +2,7 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./routes');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3030;
 
 //middleware
 app.use(bodyParser.json());
