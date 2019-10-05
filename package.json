@@ -20,8 +20,9 @@
   "scripts": {
     "db:migrate": "sequelize db:migrate --config database/config/config.json --migrations-path database/migrations",
     "db:migrate-undo": "sequelize db:migrate:undo:all --config database/config/config.json --migrations-path database/migrations",
+    "heroku-build-script":"npm i --sava sequelize-cli && npm run db:migrate",
     "start:dev": "nodemon index.js",
-    "start": "npm run db:migrate && node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
