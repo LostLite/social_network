@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  user.Instance.prototype.encryptPassword = password => {
+  user.prototype.encryptPassword = password => {
     if(!password) return "";
     try {
       return crypto.createHmac('sha1',this.salt).update(password).digest('hex')
