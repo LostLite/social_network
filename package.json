@@ -11,14 +11,15 @@
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.19.2"
+    "sequelize": "^5.19.2",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.3"
   },
   "scripts": {
-    "db:migrate": "sequelize db:migrate",
-    "db:migrate-undo": "sequelize db:migrate:undo:all",
+    "db:migrate": "sequelize db:migrate --config database/config/config.json --migrations-path database/migrations",
+    "db:migrate-undo": "sequelize db:migrate:undo:all --config database/config/config.json --migrations-path database/migrations",
     "start:dev": "nodemon index.js",
     "start": "node index.js"
   },
