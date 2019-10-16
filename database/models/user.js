@@ -3,7 +3,7 @@ const uuidv1 = require('uuid/v1');
 const crypto = require('crypto');
 
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define('user', {
+  const User = sequelize.define('User', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     hashed_password: DataTypes.STRING,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  user.prototype.encryptPassword = password => {
+  User.Instance.prototype.encryptPassword = password => {
     if(!password) return "";
     try {
       return crypto.createHmac('sha1',this.salt).update(password).digest('hex')
