@@ -3,31 +3,31 @@ const uuidv1 = require('uuid/v1');
 const crypto = require('crypto');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('user', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     hashed_password: DataTypes.STRING,
     password: {
       type:DataTypes.VIRTUAL,
-      set:(password)=>{
-        this.setDataValue('password', password),
+      set:function(val){
+        this.setDataValue('password', val),
         this.setDataValue('salt', uuidv1()),
-        this.setDataValue('hashed_password', this.encryptPassword(password));
+        this.setDataValue('hashed_password', this.encryptPassword(val));
       }
     },
     salt: DataTypes.STRING
   }, {});
-  user.associate = function(models) {
+  User.associate = function(models) {
     // associations can be defined here
   };
 
-  User.Instance.prototype.encryptPassword = password => {
-    if(!password) return "";
+  User.prototype.encryptPassword = function(val){
+    if(!val) return "";
     try {
-      return crypto.createHmac('sha1',this.salt).update(password).digest('hex')
+      return crypto.createHmac('sha1',this.salt).update(val).digest('hex')
     } catch (error) {
       
     }
   };
-  return user;
+  return User;
 };

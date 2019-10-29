@@ -18,8 +18,8 @@
     "nodemon": "^1.19.3"
   },
   "scripts": {
-    "db:migrate": "sequelize db:migrate --config database/config/config.json --migrations-path database/migrations",
-    "db:migrate-undo": "sequelize db:migrate:undo:all --config database/config/config.json --migrations-path database/migrations",
+    "db:migrate": "sequelize db:migrate --config database/config/config.js --migrations-path database/migrations",
+    "db:migrate-undo": "sequelize db:migrate:undo:all --config database/config/config.js --migrations-path database/migrations",
     "heroku-build-script": "npm i --save sequelize-cli && npm run db:migrate",
     "start:dev": "nodemon index.js",
     "start": "node index.js"

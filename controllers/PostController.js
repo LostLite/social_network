@@ -1,5 +1,4 @@
-const Post = require('../database/models/').Post;
-const {validationResult} = require('express-validator');
+const db = require('../database/models/');
 
 module.exports = {
     
@@ -7,7 +6,7 @@ module.exports = {
         try {
             const {title,body} = req.body;
             
-            const newPost = await Post.create({title, body});
+            const newPost = await db.post.create({title, body});
 
             return res.status(201).json({
                 message: 'Post created successfully',
