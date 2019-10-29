@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
+  User.prototype.authenticate = function(plainText){
+    return this.encryptPassword(plainText) === this.hashed_password;
+  };
+
   User.prototype.encryptPassword = function(val){
     if(!val) return "";
     try {
@@ -29,5 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       
     }
   };
+
   return User;
 };
