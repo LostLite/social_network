@@ -24,8 +24,10 @@ module.exports = {
     getPosts: async (req, res) => {
         try {
             const posts = await db.post.findAll({
-                attributes: ['id', 'title','body', 'photo','createdAt']
+                attributes: ['id', 'title','body', 'photo','createdAt'],
+                include: [{model:db.user, attributes: ['id', 'name', 'email']}]
             });
+            
             return res.status(200).json({ posts });
 
         } catch (error) {
