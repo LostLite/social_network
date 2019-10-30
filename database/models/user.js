@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
     // associations can be defined here
     User.hasMany(models.post);
+    User.hasMany(models.comment);
   };
 
   User.prototype.authenticate = function(plainText){
@@ -31,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     try {
       return crypto.createHmac('sha1',this.salt).update(val).digest('hex')
     } catch (error) {
-      
+      throw error;
     }
   };
 
