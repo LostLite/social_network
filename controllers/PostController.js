@@ -24,14 +24,14 @@ module.exports = {
 
     getPosts: async (req, res) => {
         try {
-            const posts = await Post.findAll({
+            const posts = await db.post.findAll({
                 attributes: ['id', 'title','body','createdAt']
             });
             return res.status(200).json({ posts });
 
         } catch (error) {
             return res.status(500).json({
-                message: 'An error occurred while creating the post',
+                message: 'An error occurred while fetching the posts',
                 error
             });
         }
@@ -42,7 +42,7 @@ module.exports = {
 
         try {
             
-            const post = await Post.findByPk(req.params.id);
+            const post = await db.post.findByPk(req.params.id);
 
             if(!post) return res.status(400).json({ message: 'That post does not exist'});
 
@@ -52,7 +52,7 @@ module.exports = {
 
         } catch (error) {
             return res.status(500).json({
-                message: 'An error occurred while creating the post',
+                message: 'An error occurred while fetching the post',
                 error
             });
         }
