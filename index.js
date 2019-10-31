@@ -2,6 +2,7 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload')
 const router = require('./routes');
 const PORT = process.env.PORT || 3030;
 
@@ -10,6 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser())
 app.use(morgan('dev'));
+app.use(fileUpload({
+    useTempFiles: true
+}));
 app.use('/', router);
 //Process unauthorised error
 app.use(function (err, req, res, next) {

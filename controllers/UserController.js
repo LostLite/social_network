@@ -22,23 +22,7 @@ module.exports = {
     },
 
     singleUser: async (req, res) => {
-        // try {
-            
-        //     const user = await getUserById(req.params.userId);
-
-        //     if(!user) return res.status(401).json({message: 'Invalid user'});
-
-        //     return res.status(200).json({user});
-
-        // } catch (error) {
-        //     return res.status(500).json({
-        //         message: 'An error occurred while fetching user',
-        //         error
-        //     });
-        // }
-
         return res.status(200).json({user: req.profile});
-        
     },
 
     updateUser: async (req, res) => {
