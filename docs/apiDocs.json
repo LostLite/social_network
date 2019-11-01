@@ -1,0 +1,16 @@
+{
+    "posts/":"get all posts",
+    "posts/:id": {
+        "get":"get request to fetch a single post",
+        "put": "put request to update a single post",
+        "delete": "delete request to delete a single post"
+    },
+    "posts/by/:userId": "get all posts by user",
+    "posts/create": "post request to create a new post",
+    "users/":"get all users",
+    "users/:id": {
+        "get":"get request to fetch a single user",
+        "put": "put request to update a single user",
+        "delete": "delete request to delete a single user"
+    }
+}

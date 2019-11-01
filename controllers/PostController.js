@@ -23,9 +23,11 @@ module.exports = {
 
     getPosts: async (req, res) => {
         try {
+            
             const posts = await db.post.findAll({
                 attributes: ['id', 'title','body', 'photo','createdAt'],
-                include: [{model:db.user, attributes: ['id', 'name', 'email']}]
+                order: [['createdAt', 'DESC']],
+                include: [{model:db.user, attributes: ['id', 'name']}]
             });
             
             return res.status(200).json({ posts });
@@ -42,7 +44,6 @@ module.exports = {
     getSinglePost: async (req, res) => {
 
         try {
-            
             const post = await db.post.findByPk(req.params.id);
 
             if(!post) return res.status(400).json({ message: 'That post does not exist'});
@@ -59,15 +60,32 @@ module.exports = {
         }
     },
 
+    getPostsByUser: async (req, res) => {
+
+        try {
+            
+            const posts = await db.post.findAll({
+                where: { userId: req.params.userId},
+                attributes: ['id', 'title','body', 'photo','createdAt'],
+                order: [['createdAt', 'DESC']],
+                include: [{model:db.user, attributes: ['id', 'name']}]
+            });
+
+            return res.status(200).json({posts});
+
+        } catch (error) {
+            return res.status(500).json({
+                message: 'An error occurred while fetching the posts',
+                error
+            });
+        }
+    },
+
     updatePost: async (req, res) => {
 
         try {
-            const { id } = req.params;
+            const { id } = req.post;
             const { title, body, photo} = req.body;
-
-            const post = await db.post.findByPk(id);
-
-            if(!post) return res.status(400).json({ message: "Invalid post"});
 
             await db.post.update({title, body, photo}, {
                 where: { id }
@@ -86,11 +104,7 @@ module.exports = {
 
     deletePost: async (req, res) => {
         try {
-            const { id } = req.params;
-
-            const post = await db.post.findByPk(id);
-
-            if(!post) return res.status(400).json({ message: "Invalid post"});
+            const { id } = req.post;
 
             await db.post.destroy({
                 where: { id }
