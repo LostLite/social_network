@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { allUsers, singleUser, updateUser, deleteUser} = require('../controllers/UserController');
-const { hasAuthorization, hasLoggedIn, populateProfile } = require('../helpers/authentication');
-const validator = require('../validators');
+const { hasAuthorization, hasLoggedIn, populateProfile } = require('../helpers/user_authentication');
+const validator = require('../validators/user_validator');
 
 //for any route containing :userId, get the user and update the profile object
 router.param('userId', populateProfile);

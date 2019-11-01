@@ -1,7 +1,7 @@
 require('dotenv').config();
 const expressJwt = require('express-jwt');
 const jwt = require('jsonwebtoken');
-const { getUserById } = require('../helpers/fetchUsers');
+const { getUserById } = require('./fetchUsers');
 
 module.exports = {
     
@@ -29,7 +29,6 @@ module.exports = {
     },
 
     populateProfileFromToken: async (req, res, next) => {
-
         //get the token from the header if present
         let token = req.headers["x-access-token"] || req.headers["authorization"];
         token = token.split(' ')[1];

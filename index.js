@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload')
+const fs = require('fs');
+const cors = require('cors');
 const router = require('./routes');
 const PORT = process.env.PORT || 3030;
 
@@ -14,6 +16,7 @@ app.use(morgan('dev'));
 app.use(fileUpload({
     useTempFiles: true
 }));
+app.use(cors());
 app.use('/', router);
 //Process unauthorised error
 app.use(function (err, req, res, next) {
@@ -24,7 +27,12 @@ app.use(function (err, req, res, next) {
 
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Social Network API. It is a Work in Progress')
+    fs.readFile('docs/apiDocs.json', (err, data) => {
+        if(err) res.status(400).json({error:err});
+
+        const docs = JSON.parse(data);
+        res.status(200).json(docs);
+    });
 });
 
 
